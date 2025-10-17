@@ -255,6 +255,24 @@ Version 1.4.1-beta.1:
   * Contract: [0xE6afd49f7beF444e39BFDFbB6BE63119a8BdE88F](https://uniscan.xyz/address/0xE6afd49f7beF444e39BFDFbB6BE63119a8BdE88F)
   * Deployment and ABI: [Indexer.json](./deployments/unichain/Indexer.json)
 
+#### Polkadot testnet poaseo
+
+Version 1.4.1-beta.1:
+
+* **EAS**:
+  * Contract: [0x66e45E407B1159F126e76aeF9DbFf426952b2e15](https://blockscout-passet-hub.parity-testnet.parity.io/address/0x66e45E407B1159F126e76aeF9DbFf426952b2e15)
+  * Deployment and ABI: [EAS.json](./deployments/polkadot-testnet-paseo/EAS.json)
+* **SchemaRegistry**:
+  * Contract: [0x3cbd4DD4617e2aF95c5b451b1c9a3ab16E23b4a1](https://blockscout-passet-hub.parity-testnet.parity.io/address/0x3cbd4DD4617e2aF95c5b451b1c9a3ab16E23b4a1)
+  * Deployment and ABI: [SchemaRegistry.json](./deployments/polkadot-testnet-paseo/SchemaRegistry.json)
+* **EIP712Proxy**:
+  * Contract: [0x592FCDB8439E5D11AC5117472E89f63289b47899](https://blockscout-passet-hub.parity-testnet.parity.io/address/0x592FCDB8439E5D11AC5117472E89f63289b47899)
+  * Deployment and ABI: [EIP712Proxy.json](./deployments/polkadot-testnet-paseo/EIP712Proxy.json)
+* **Indexer**:
+  * Contract: [0xd64b14E3bC71439eD2106e0Af2a610aac0357383](https://blockscout-passet-hub.parity-testnet.parity.io/address/0xd64b14E3bC71439eD2106e0Af2a610aac0357383)
+  * Deployment and ABI: [Indexer.json](./deployments/polkadot-testnet-paseo/Indexer.json)
+
+
 #### Blast
 
 Version 1.3.0:

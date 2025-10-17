@@ -35,6 +35,7 @@ deployments/arbitrum-sepolia/solcInputs/*
 deployments/polygon-amoy/solcInputs/*
 deployments/scroll-sepolia/solcInputs/*
 deployments/linea-goerli/solcInputs/*
+deployments/polkadot-testnet-paseo/solcInputs/*
 deployments/hardhat/*
 !deployments/hardhat/.chainId
 
