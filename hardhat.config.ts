@@ -3,6 +3,9 @@ import '@nomiclabs/hardhat-solhint';
 import 'hardhat-contract-sizer';
 import { HardhatUserConfig } from 'hardhat/config';
 import { MochaOptions } from 'mocha';
+import { config as dotenvConfig } from 'dotenv';
+
+dotenvConfig();
 
 interface EnvOptions {
   PROFILE?: boolean;
@@ -35,9 +38,13 @@ const config: HardhatUserConfig = {
         accountsBalance: '10000000000000000000000000000000000000000000000'
       },
       allowUnlimitedContractSize: true
+    },
+    paseoAssetHub: {
+      url: "https://testnet-passet-hub-eth-rpc.polkadot.io",
+      chainId: 420420422, // Paseo Asset Hub chain ID
+      accounts: process.env.PRIVATE_KEY ? [process.env.PRIVATE_KEY] : [],
     }
   },
-
   solidity: {
     version: '0.8.28',
     settings: {
