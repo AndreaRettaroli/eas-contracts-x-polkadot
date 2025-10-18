@@ -1,560 +1,566 @@
-# Ethereum Attestation Service
+# Contract Verification Commands for Asset Hub Testnet
 
-[![Docs](https://img.shields.io/badge/docs-%F0%9F%93%84-blue)](https://eas.eth.link)
-[![NPM Package](https://img.shields.io/npm/v/@ethereum-attestation-service/eas-contracts.svg)](https://www.npmjs.org/package/@ethereum-attestation-service/eas-contracts)
-[![Test](https://github.com/ethereum-attestation-service/eas-contracts/actions/workflows/ci.yml/badge.svg)](https://github.com/ethereum-attestation-service/eas-contracts/actions/workflows/ci.yml)
-[![License](https://img.shields.io/github/license/ethereum-attestation-service/eas-contracts?style=flat-square)](https://github.com/ethereum-attestation-service/eas-contracts/blob/master/LICENSE)
+## Project description
 
-## Introduction
+In this project we decided to migrate [Ethereum Attestation Service](https://attest.org/) contract on Polkadot Testnet Paseo as part of the [Polkadot Porting Existing Smart Contracts](https://ethrome25.notion.site/Prizes-and-Bounties-160d00c099af81aba88cd436e7acf94f) track of [EthRome2025](https://www.ethrome.org/).
 
-The Ethereum Attestation Service is a free and open protocol for on-chain attestations on EVM compatible blockchains. It is a generalized service that allows anyone to register a schema for their particular use case, and then make attestations following their schema.
+## Comparative Analysis
 
-Schemas can be registered using the `SchemaRegistry.sol` contract, and attestations are made using the `EAS.sol` contract.
+Functionalities are entirely preserved and migrated.
 
-In addition, we provide a resolver contract for advanced use cases, such as on-chain verification of attestation data, and also attaching payments to attestations (which makes a new suite of powerful web3 applications possible).
+## Working Deployment
 
-We also provide an SDK for developers.
+### Verify SchemaRegistry Contract
 
-On-chain attestations will enable a powerful new range of web3 applications, including:
+Explorer link: https://blockscout-passet-hub.parity-testnet.parity.io/address/0x3cbd4DD4617e2aF95c5b451b1c9a3ab16E23b4a1
 
-* Identity
-* Trust Scores
-* Goodness Scores
-* Credit Scores
-* Clout
-* Land Registries
-* Social Networks
-* Portable Trust Layers
-* Retroactive Public Goods Funding
-* KYC Services
-* Uncollateralized Lending / Borrowing
-* Voting
-* Oracles (who can be atomically paid for making attestations inside the protocol)
-* Likes/Dislikes
-* Content Filtering
-* And many more!
-
-## Deployments
-
-Please note that you can also import and use the addresses directly in your code using the `@ethereum-attestation-service/eas-contracts/deployments` deployment artifacts corresponding to your desired network.
-
-### Mainnets
-
-#### Ethereum
-
-Version 0.26:
-
-* **EAS**:
-  * Contract: [0xA1207F3BBa224E2c9c3c6D5aF63D0eb1582Ce587](https://etherscan.io/address/0xA1207F3BBa224E2c9c3c6D5aF63D0eb1582Ce587)
-  * Deployment and ABI: [EAS.json](./deployments/mainnet/EAS.json)
-* **SchemaRegistry**:
-  * Contract: [0xA7b39296258348C78294F95B872b282326A97BDF](https://etherscan.io/address/0xA7b39296258348C78294F95B872b282326A97BDF)
-  * Deployment and ABI: [SchemaRegistry.json](./deployments/mainnet/SchemaRegistry.json)
-
-#### Optimism
-
-Version 1.0.1:
-
-* **EAS**:
-  * Contract: [0x4200000000000000000000000000000000000021](https://optimistic.etherscan.io/address/0x4200000000000000000000000000000000000021)
-  * Deployment and ABI: [EAS.json](./deployments/optimism/EAS.json)
-* **SchemaRegistry**:
-  * Contract: [0x4200000000000000000000000000000000000020](https://optimistic.etherscan.io/address/0x4200000000000000000000000000000000000020)
-  * Deployment and ABI: [SchemaRegistry.json](./deployments/optimism/SchemaRegistry.json)
-
-Version 1.2.0:
-
-* **EIP712Proxy**:
-  * Contract: [0xE132c2E90274B44FfD8090b58399D04ddc060AE1](https://optimistic.etherscan.io/address/0xE132c2E90274B44FfD8090b58399D04ddc060AE1)
-  * Deployment and ABI: [EIP712Proxy.json](./deployments/optimism/EIP712Proxy.json)
-* **Indexer**:
-  * Contract: [0x6dd0CB3C3711c8B5d03b3790e5339Bbc2Bbcf934](https://optimistic.etherscan.io/address/0x6dd0CB3C3711c8B5d03b3790e5339Bbc2Bbcf934)
-  * Deployment and ABI: [Indexer.json](./deployments/optimism/Indexer.json)
-
-#### Base
-
-Version 1.0.1:
-
-* **EAS**:
-  * Contract: [0x4200000000000000000000000000000000000021](https://basescan.org/address/0x4200000000000000000000000000000000000021)
-  * Deployment and ABI: [EAS.json](./deployments/base/EAS.json)
-* **SchemaRegistry**:
-  * Contract: [0x4200000000000000000000000000000000000020](https://basescan.org/address/0x4200000000000000000000000000000000000020)
-  * Deployment and ABI: [SchemaRegistry.json](./deployments/base/SchemaRegistry.json)
-
-Version 1.2.0:
-
-* **EIP712Proxy**:
-  * Contract: [0xF095fE4b23958b08D38e52d5d5674bBF0C03cbF6](https://basescan.org/address/0xF095fE4b23958b08D38e52d5d5674bBF0C03cbF6)
-  * Deployment and ABI: [EIP712Proxy.json](./deployments/base/EIP712Proxy.json)
-* **Indexer**:
-  * Contract: [0x37AC6006646f2e687B7fB379F549Dc7634dF5b84](https://basescan.org/address/0x37AC6006646f2e687B7fB379F549Dc7634dF5b84)
-  * Deployment and ABI: [Indexer.json](./deployments/base/Indexer.json)
-
-#### Arbitrum One
-
-Version 0.26:
-
-* **EAS**:
-  * Contract: [0xbD75f629A22Dc1ceD33dDA0b68c546A1c035c458](https://arbiscan.io/address/0xbD75f629A22Dc1ceD33dDA0b68c546A1c035c458)
-  * Deployment and ABI: [EAS.json](./deployments/arbitrum-one/EAS.json)
-* **SchemaRegistry**:
-  * Contract: [0xA310da9c5B885E7fb3fbA9D66E9Ba6Df512b78eB](https://arbiscan.io/address/0xA310da9c5B885E7fb3fbA9D66E9Ba6Df512b78eB)
-  * Deployment and ABI: [SchemaRegistry.json](./deployments/arbitrum-one/SchemaRegistry.json)
-
-#### Arbitrum Nova
-
-Version 1.3.0:
-
-* **EAS**:
-  * Contract: [0x6d3dC0Fe5351087E3Af3bDe8eB3F7350ed894fc3](https://nova.arbiscan.io/address/0x6d3dC0Fe5351087E3Af3bDe8eB3F7350ed894fc3)
-  * Deployment and ABI: [EAS.json](./deployments/arbitrum-nova/EAS.json)
-* **SchemaRegistry**:
-  * Contract: [0x49563d0DA8DF38ef2eBF9C1167270334D72cE0AE](https://nova.arbiscan.io/address/0x49563d0DA8DF38ef2eBF9C1167270334D72cE0AE)
-  * Deployment and ABI: [SchemaRegistry.json](./deployments/arbitrum-nova/SchemaRegistry.json)
-* **EIP712Proxy**:
-  * Contract: [0xEbf2DeeD690F8A68b8248d6a12231ee70ED2154A](https://nova.arbiscan.io/address/0xEbf2DeeD690F8A68b8248d6a12231ee70ED2154A)
-  * Deployment and ABI: [EIP712Proxy.json](./deployments/arbitrum-nova/EIP712Proxy.json)
-* **Indexer**:
-  * Contract: [0x7182Be5e84aFEe9Dc29C69D081F8A0FA834d6CB8](https://nova.arbiscan.io/address/0x7182Be5e84aFEe9Dc29C69D081F8A0FA834d6CB8)
-  * Deployment and ABI: [Indexer.json](./deployments/arbitrum-nova/Indexer.json)
-
-#### Polygon
-
-Version 1.3.0:
-
-* **EAS**:
-  * Contract: [0x5E634ef5355f45A855d02D66eCD687b1502AF790](https://polygonscan.com/address/0x5E634ef5355f45A855d02D66eCD687b1502AF790)
-  * Deployment and ABI: [EAS.json](./deployments/polygon/EAS.json)
-* **SchemaRegistry**:
-  * Contract: [0x7876EEF51A891E737AF8ba5A5E0f0Fd29073D5a7](https://polygonscan.com/address/0x7876EEF51A891E737AF8ba5A5E0f0Fd29073D5a7)
-  * Deployment and ABI: [SchemaRegistry.json](./deployments/polygon/SchemaRegistry.json)
-* **EIP712Proxy**:
-  * Contract: [0x4be71865917C7907ccA531270181D9B7dD4f2733](https://polygonscan.com/address/0x4be71865917C7907ccA531270181D9B7dD4f2733)
-  * Deployment and ABI: [EIP712Proxy.json](./deployments/polygon/EIP712Proxy.json)
-* **Indexer**:
-  * Contract: [0x12d0f50Eb2d67b14293bdDA2C248358f3dfE5308](https://polygonscan.com/address/0x12d0f50Eb2d67b14293bdDA2C248358f3dfE5308)
-  * Deployment and ABI: [Indexer.json](./deployments/polygon/Indexer.json)
-
-#### Scroll
-
-Version 1.3.0:
-
-* **EAS**:
-  * Contract: [0xC47300428b6AD2c7D03BB76D05A176058b47E6B0](https://scrollscan.com/address/0xC47300428b6AD2c7D03BB76D05A176058b47E6B0)
-  * Deployment and ABI: [EAS.json](./deployments/scroll/EAS.json)
-* **SchemaRegistry**:
-  * Contract: [0xD2CDF46556543316e7D34e8eDc4624e2bB95e3B6](https://scrollscan.com/address/0xD2CDF46556543316e7D34e8eDc4624e2bB95e3B6)
-  * Deployment and ABI: [SchemaRegistry.json](./deployments/scroll/SchemaRegistry.json)
-* **EIP712Proxy**:
-  * Contract: [0x77b7DA1c40762Cd8AFfE2069b575328EfD4D9801](https://scrollscan.com/address/0x77b7DA1c40762Cd8AFfE2069b575328EfD4D9801)
-  * Deployment and ABI: [EIP712Proxy.json](./deployments/scroll/EIP712Proxy.json)
-* **Indexer**:
-  * Contract: [0x8314bc1B2f7F286cb4f0323FE7119C0F99D4A083](https://scrollscan.com/address/0x8314bc1B2f7F286cb4f0323FE7119C0F99D4A083)
-  * Deployment and ABI: [Indexer.json](./deployments/scroll/Indexer.json)
-
-#### zkSync
-
-Version 1.3.0:
-
-* **EAS**:
-  * Contract: [0x21d8d4eE83b80bc0Cc0f2B7df3117Cf212d02901](https://explorer.zksync.io/address/0x21d8d4eE83b80bc0Cc0f2B7df3117Cf212d02901)
-  * Deployment and ABI: [EAS.json](./deployments/zksync/EAS.json)
-* **SchemaRegistry**:
-  * Contract: [0xB8566376dFe68B76FA985D5448cc2FbD578412a2](https://explorer.zksync.io/address/0xB8566376dFe68B76FA985D5448cc2FbD578412a2)
-  * Deployment and ABI: [SchemaRegistry.json](./deployments/zksync/SchemaRegistry.json)
-* **EIP712Proxy**:
-  * Contract: [0x8E8F79e9A1Cd4da7bD2f15e5B0a4B4a613E37C5a](https://explorer.zksync.io/address/0x8E8F79e9A1Cd4da7bD2f15e5B0a4B4a613E37C5a)
-  * Deployment and ABI: [EIP712Proxy.json](./deployments/zksync/EIP712Proxy.json)
-* **Indexer**:
-  * Contract: [0x8AdA7852df64A66ca89EFc82144e6be71Bd53B4E](https://explorer.zksync.io/address/0x8AdA7852df64A66ca89EFc82144e6be71Bd53B4E)
-  * Deployment and ABI: [Indexer.json](./deployments/zksync/Indexer.json)
-
-#### Celo
-
-Version 1.3.0:
-
-* **EAS**:
-  * Contract: [0x72E1d8ccf5299fb36fEfD8CC4394B8ef7e98Af92](https://celoscan.io/address/0x72E1d8ccf5299fb36fEfD8CC4394B8ef7e98Af92)
-  * Deployment and ABI: [EAS.json](./deployments/celo/EAS.json)
-* **SchemaRegistry**:
-  * Contract: [0x5ece93bE4BDCF293Ed61FA78698B594F2135AF34](https://celoscan.io/address/0x5ece93bE4BDCF293Ed61FA78698B594F2135AF34)
-  * Deployment and ABI: [SchemaRegistry.json](./deployments/celo/SchemaRegistry.json)
-* **EIP712Proxy**:
-  * Contract: [0x6792B6AE17c6416016b943585e957a29bc452806](https://celoscan.io/address/0x6792B6AE17c6416016b943585e957a29bc452806)
-  * Deployment and ABI: [EIP712Proxy.json](./deployments/celo/EIP712Proxy.json)
-* **Indexer**:
-  * Contract: [0x76591b332d0F099E89FA335fC827D44C47705D2f](https://celoscan.io/address/0x76591b332d0F099E89FA335fC827D44C47705D2f)
-  * Deployment and ABI: [Indexer.json](./deployments/celo/Indexer.json)
-
-#### Telos
-
-Version 1.4.0:
-
-* **EAS**:
-  * Contract: [0x9898C3FF2fdCA9E734556fC4BCCd5b9239218155](https://teloscan.io/address/0x9898C3FF2fdCA9E734556fC4BCCd5b9239218155)
-  * Deployment and ABI: [EAS.json](./deployments/telos/EAS.json)
-* **SchemaRegistry**:
-  * Contract: [0x842511adC21B85C0B2fdB02AAcFA92fdf7Cda470](https://teloscan.io/address/0x842511adC21B85C0B2fdB02AAcFA92fdf7Cda470)
-  * Deployment and ABI: [SchemaRegistry.json](./deployments/telos/SchemaRegistry.json)
-* **EIP712Proxy**:
-  * Contract: [0xA76973759A350D4D7EC7aF042c6c2A32be861AD9](https://teloscan.io/address/0xA76973759A350D4D7EC7aF042c6c2A32be861AD9)
-  * Deployment and ABI: [EIP712Proxy.json](./deployments/telos/EIP712Proxy.json)
-* **Indexer**:
-  * Contract: [0x6Abe1F9489B97d9f11E1347567f61137BC61B6F9](https://teloscan.io/address/0x6Abe1F9489B97d9f11E1347567f61137BC61B6F9)
-  * Deployment and ABI: [Indexer.json](./deployments/telos/Indexer.json)
-
-#### Soneium
-
-Version 1.4.1-beta.1:
-
-* **EAS**:
-  * Contract: [0x4200000000000000000000000000000000000021](https://soneium.blockscout.com/address/0x4200000000000000000000000000000000000021)
-  * Deployment and ABI: [EAS.json](./deployments/soneium/EAS.json)
-* **SchemaRegistry**:
-  * Contract: [0x4200000000000000000000000000000000000020](https://soneium.blockscout.com/address/0x4200000000000000000000000000000000000020)
-  * Deployment and ABI: [SchemaRegistry.json](./deployments/soneium/SchemaRegistry.json)
-* **EIP712Proxy**:
-  * Contract: [0x465a34dd6dDb5DF22DBC67D005b5BF4a0BF7f8AE](https://soneium.blockscout.com/address/0x465a34dd6dDb5DF22DBC67D005b5BF4a0BF7f8AE)
-  * Deployment and ABI: [EIP712Proxy.json](./deployments/soneium/EIP712Proxy.json)
-* **Indexer**:
-  * Contract: [0x16613642e9793d413c296f9AB5457077b99AA7B0](https://soneium.blockscout.com/address/0x16613642e9793d413c296f9AB5457077b99AA7B0)
-  * Deployment and ABI: [Indexer.json](./deployments/soneium/Indexer.json)
-
-#### Ink
-
-Version 1.4.1-beta.1:
-
-* **EAS**:
-  * Contract: [0x4200000000000000000000000000000000000021](https://explorer.inkonchain.com/address/0x4200000000000000000000000000000000000021)
-  * Deployment and ABI: [EAS.json](./deployments/ink/EAS.json)
-* **SchemaRegistry**:
-  * Contract: [0x4200000000000000000000000000000000000020](https://explorer.inkonchain.com/address/0x4200000000000000000000000000000000000020)
-  * Deployment and ABI: [SchemaRegistry.json](./deployments/ink/SchemaRegistry.json)
-* **EIP712Proxy**:
-  * Contract: [0x6511967899445c5944f555Fe2B2D5EC4D74d2579](https://explorer.inkonchain.com/address/0x6511967899445c5944f555Fe2B2D5EC4D74d2579)
-  * Deployment and ABI: [EIP712Proxy.json](./deployments/ink/EIP712Proxy.json)
-* **Indexer**:
-  * Contract: [0xd87dCB0E5E0044Ba5Aa57D383cd3f8D0509a42b9](https://explorer.inkonchain.com/address/0xd87dCB0E5E0044Ba5Aa57D383cd3f8D0509a42b9)
-  * Deployment and ABI: [Indexer.json](./deployments/ink/Indexer.json)
-
-#### Unichain
-
-Version 1.4.1-beta.1:
-
-* **EAS**:
-  * Contract: [0x4200000000000000000000000000000000000021](https://uniscan.xyz/address/0x4200000000000000000000000000000000000021)
-  * Deployment and ABI: [EAS.json](./deployments/unichain/EAS.json)
-* **SchemaRegistry**:
-  * Contract: [0x4200000000000000000000000000000000000020](https://uniscan.xyz/address/0x4200000000000000000000000000000000000020)
-  * Deployment and ABI: [SchemaRegistry.json](./deployments/unichain/SchemaRegistry.json)
-* **EIP712Proxy**:
-  * Contract: [0x65c83e3C5f1505C4220B2f57815285Dc58464088](https://uniscan.xyz/address/0x65c83e3C5f1505C4220B2f57815285Dc58464088)
-  * Deployment and ABI: [EIP712Proxy.json](./deployments/unichain/EIP712Proxy.json)
-* **Indexer**:
-  * Contract: [0xE6afd49f7beF444e39BFDFbB6BE63119a8BdE88F](https://uniscan.xyz/address/0xE6afd49f7beF444e39BFDFbB6BE63119a8BdE88F)
-  * Deployment and ABI: [Indexer.json](./deployments/unichain/Indexer.json)
-
-#### Polkadot testnet poaseo
-
-Version 1.4.1-beta.1:
-
-* **EAS**:
-  * Contract: [0x66e45E407B1159F126e76aeF9DbFf426952b2e15](https://blockscout-passet-hub.parity-testnet.parity.io/address/0x66e45E407B1159F126e76aeF9DbFf426952b2e15)
-  * Deployment and ABI: [EAS.json](./deployments/polkadot-testnet-paseo/EAS.json)
-* **SchemaRegistry**:
-  * Contract: [0x3cbd4DD4617e2aF95c5b451b1c9a3ab16E23b4a1](https://blockscout-passet-hub.parity-testnet.parity.io/address/0x3cbd4DD4617e2aF95c5b451b1c9a3ab16E23b4a1)
-  * Deployment and ABI: [SchemaRegistry.json](./deployments/polkadot-testnet-paseo/SchemaRegistry.json)
-* **EIP712Proxy**:
-  * Contract: [0x592FCDB8439E5D11AC5117472E89f63289b47899](https://blockscout-passet-hub.parity-testnet.parity.io/address/0x592FCDB8439E5D11AC5117472E89f63289b47899)
-  * Deployment and ABI: [EIP712Proxy.json](./deployments/polkadot-testnet-paseo/EIP712Proxy.json)
-* **Indexer**:
-  * Contract: [0xd64b14E3bC71439eD2106e0Af2a610aac0357383](https://blockscout-passet-hub.parity-testnet.parity.io/address/0xd64b14E3bC71439eD2106e0Af2a610aac0357383)
-  * Deployment and ABI: [Indexer.json](./deployments/polkadot-testnet-paseo/Indexer.json)
-
-
-#### Blast
-
-Version 1.3.0:
-
-* **EAS**:
-  * Contract: [0x4200000000000000000000000000000000000021](https://blastscan.io/address/0x4200000000000000000000000000000000000021)
-  * Deployment and ABI: [EAS.json](./deployments/blast/EAS.json)
-* **SchemaRegistry**:
-  * Contract: [0x4200000000000000000000000000000000000020](https://blastscan.io/address/0x4200000000000000000000000000000000000020)
-  * Deployment and ABI: [SchemaRegistry.json](./deployments/blast/SchemaRegistry.json)
-
-#### Linea
-
-Version 1.2.0:
-
-* **EAS**:
-  * Contract: [0xaEF4103A04090071165F78D45D83A0C0782c2B2a](https://lineascan.build/address/0xaEF4103A04090071165F78D45D83A0C0782c2B2a)
-  * Deployment and ABI: [EAS.json](./deployments/linea/EAS.json)
-* **SchemaRegistry**:
-  * Contract: [0x55D26f9ae0203EF95494AE4C170eD35f4Cf77797](https://lineascan.build/address/0x55D26f9ae0203EF95494AE4C170eD35f4Cf77797)
-  * Deployment and ABI: [SchemaRegistry.json](./deployments/linea/SchemaRegistry.json)
-
-### Testnets
-
-#### Sepolia
-
-Version 0.26:
-
-* **EAS**:
-  * Contract: [0xC2679fBD37d54388Ce493F1DB75320D236e1815e](https://sepolia.etherscan.io/address/0xC2679fBD37d54388Ce493F1DB75320D236e1815e)
-  * Deployment and ABI: [EAS.json](./deployments/sepolia/EAS.json)
-* **SchemaRegistry**:
-  * Contract: [0x0a7E2Ff54e76B8E6659aedc9103FB21c038050D0](https://sepolia.etherscan.io/address/0x0a7E2Ff54e76B8E6659aedc9103FB21c038050D0)
-  * Deployment and ABI: [SchemaRegistry.json](./deployments/sepolia/SchemaRegistry.json)
-
-Version 1.2.0:
-
-* **EIP712Proxy**:
-  * Contract: [0x9C9d17bEE150E4eCDf3b99baFA62c08Cb30E82BC](https://sepolia.etherscan.io/address/0x9C9d17bEE150E4eCDf3b99baFA62c08Cb30E82BC)
-  * Deployment and ABI: [EIP712Proxy.json](./deployments/sepolia/EIP712Proxy.json)
-* **Indexer**:
-  * Contract: [0xaEF4103A04090071165F78D45D83A0C0782c2B2a](https://sepolia.etherscan.io/address/0xaEF4103A04090071165F78D45D83A0C0782c2B2a)
-  * Deployment and ABI: [Indexer.json](./deployments/sepolia/Indexer.json)
-
-#### Optimism Sepolia
-
-Version 1.0.2:
-
-* **EAS**:
-  * Contract: [0x4200000000000000000000000000000000000021](https://sepolia-optimism.etherscan.io/address/0x4200000000000000000000000000000000000021)
-  * Deployment and ABI: [EAS.json](./deployments/optimism-sepolia/EAS.json)
-* **SchemaRegistry**:
-  * Contract: [0x4200000000000000000000000000000000000020](https://sepolia-optimism.etherscan.io/address/0x4200000000000000000000000000000000000020)
-  * Deployment and ABI: [SchemaRegistry.json](./deployments/optimism-sepolia/SchemaRegistry.json)
-
-Version 1.3.0:
-
-* **EIP712Proxy**:
-  * Contract: [0x37AC6006646f2e687B7fB379F549Dc7634dF5b84](https://sepolia-optimism.etherscan.io/address/0x37AC6006646f2e687B7fB379F549Dc7634dF5b84)
-  * Deployment and ABI: [EIP712Proxy.json](./deployments/optimism-sepolia/EIP712Proxy.json)
-* **Indexer**:
-  * Contract: [0x97e6822A36E38D4d93C0c810CC2be1C6Fd492b64](https://sepolia-optimism.etherscan.io/address/0x97e6822A36E38D4d93C0c810CC2be1C6Fd492b64)
-  * Deployment and ABI: [Indexer.json](./deployments/optimism-sepolia/Indexer.json)
-
-#### Optimism Goerli
-
-Version 1.0.1:
-
-* **EAS**:
-  * Contract: [0x4200000000000000000000000000000000000021](https://goerli-optimism.etherscan.io/address/0x4200000000000000000000000000000000000021)
-  * Deployment and ABI: [EAS.json](./deployments/optimism-goerli/EAS.json)
-* **SchemaRegistry**:
-  * Contract: [0x4200000000000000000000000000000000000020](https://goerli-optimism.etherscan.io/address/0x4200000000000000000000000000000000000020)
-  * Deployment and ABI: [SchemaRegistry.json](./deployments/optimism-goerli/SchemaRegistry.json)
-
-Version 1.2.0:
-
-* **EIP712Proxy**:
-  * Contract: [0x88D1bd62AC014424b987CE5ABf311BD7749e426B](https://goerli-optimism.etherscan.io/address/0x88D1bd62AC014424b987CE5ABf311BD7749e426B)
-  * Deployment and ABI: [EIP712Proxy.json](./deployments/optimism-goerli/EIP712Proxy.json)
-* **Indexer**:
-  * Contract: [0xa42428D1bf904d762adD02b27ADac26d53643782](https://goerli-optimism.etherscan.io/address/0xa42428D1bf904d762adD02b27ADac26d53643782)
-  * Deployment and ABI: [Indexer.json](./deployments/optimism-goerli/Indexer.json)
-
-#### Base Sepolia
-
-Version 1.2.0:
-
-* **EAS**:
-  * Contract: [0x4200000000000000000000000000000000000021](https://sepolia.basescan.org/address/0x4200000000000000000000000000000000000021)
-  * Deployment and ABI: [EAS.json](./deployments/base-sepolia/EAS.json)
-* **SchemaRegistry**:
-  * Contract: [0x4200000000000000000000000000000000000020](https://sepolia.basescan.org/address/0x4200000000000000000000000000000000000020)
-  * Deployment and ABI: [SchemaRegistry.json](./deployments/base-sepolia/SchemaRegistry.json)
-
-Version 1.3.0:
-
-* **EIP712Proxy**:
-  * Contract: [0xAd64A04c20dDBbA7cBb0EcAe4823095B4adA5c57](https://sepolia.basescan.org/address/0xAd64A04c20dDBbA7cBb0EcAe4823095B4adA5c57)
-  * Deployment and ABI: [EIP712Proxy.json](./deployments/base-sepolia/EIP712Proxy.json)
-* **Indexer**:
-  * Contract: [0x2C7BCE69D5Ee84EF73CC9286416F68E60F9A61b3](https://sepolia.basescan.org/address/0x2C7BCE69D5Ee84EF73CC9286416F68E60F9A61b3)
-  * Deployment and ABI: [Indexer.json](./deployments/base-sepolia/Indexer.json)
-
-#### Base Goerli
-
-Version 1.0.1:
-
-* **EAS**:
-  * Contract: [0x4200000000000000000000000000000000000021](https://goerli.basescan.org/address/0x4200000000000000000000000000000000000021)
-  * Deployment and ABI: [EAS.json](./deployments/base-goerli/EAS.json)
-* **SchemaRegistry**:
-  * Contract: [0x4200000000000000000000000000000000000020](https://goerli.basescan.org/address/0x4200000000000000000000000000000000000020)
-  * Deployment and ABI: [SchemaRegistry.json](./deployments/base-goerli/SchemaRegistry.json)
-
-Version 1.2.0:
-
-* **EIP712Proxy**:
-  * Contract: [0x37AC6006646f2e687B7fB379F549Dc7634dF5b84](https://goerli.basescan.org/address/0x37AC6006646f2e687B7fB379F549Dc7634dF5b84)
-  * Deployment and ABI: [EIP712Proxy.json](./deployments/base-goerli/EIP712Proxy.json)
-* **Indexer**:
-  * Contract: [0xE0893F47009776D6aEC3De8455Cb0ed325Eea74a](https://goerli.basescan.org/address/0xE0893F47009776D6aEC3De8455Cb0ed325Eea74a)
-  * Deployment and ABI: [Indexer.json](./deployments/base-goerli/Indexer.json)
-
-#### Arbitrum Sepolia
-
-Version 1.3.0:
-
-* **EAS**:
-  * Contract: [0x2521021fc8BF070473E1e1801D3c7B4aB701E1dE](https:/sepolia.arbiscan.io/address/0x2521021fc8BF070473E1e1801D3c7B4aB701E1dE)
-  * Deployment and ABI: [EAS.json](./deployments/arbitrum-sepolia/EAS.json)
-* **SchemaRegistry**:
-  * Contract: [0x45CB6Fa0870a8Af06796Ac15915619a0f22cd475](https:/sepolia.arbiscan.io/address/0x45CB6Fa0870a8Af06796Ac15915619a0f22cd475)
-  * Deployment and ABI: [SchemaRegistry.json](./deployments/arbitrum-sepolia/SchemaRegistry.json)
-* **EIP712Proxy**:
-  * Contract: [0x8E807011c16E538B2dEEf1dc652EFe7724E09397](https://sepolia.arbiscan.io/address/0x8E807011c16E538B2dEEf1dc652EFe7724E09397)
-  * Deployment and ABI: [EIP712Proxy.json](./deployments/arbitrum-sepolia/EIP712Proxy.json)
-* **Indexer**:
-  * Contract: [0x501D6d86240De5A57E91414356ad4B1778F0AB18](https://sepolia.arbiscan.io/address/0x501D6d86240De5A57E91414356ad4B1778F0AB18)
-  * Deployment and ABI: [Indexer.json](./deployments/arbitrum-sepolia/Indexer.json)
-
-#### Polygon Amoy
-
-Version 1.3.0:
-
-* **EAS**:
-  * Contract: [0xb101275a60d8bfb14529C421899aD7CA1Ae5B5Fc](https://amoy.polygonscan.com/address/0xb101275a60d8bfb14529C421899aD7CA1Ae5B5Fc)
-  * Deployment and ABI: [EAS.json](./deployments/polygon-amoy/EAS.json)
-* **SchemaRegistry**:
-  * Contract: [0x23c5701A1BDa89C61d181BD79E5203c730708AE7](https://amoy.polygonscan.com/address/0x23c5701A1BDa89C61d181BD79E5203c730708AE7)
-  * Deployment and ABI: [SchemaRegistry.json](./deployments/polygon-amoy/SchemaRegistry.json)
-* **EIP712Proxy**:
-  * Contract: [0xA0ec8a80a0b8496B9Cf6Ee703bC16ABdC9F4cf2e](https://amoy.polygonscan.com/address/0xA0ec8a80a0b8496B9Cf6Ee703bC16ABdC9F4cf2e)
-  * Deployment and ABI: [EIP712Proxy.json](./deployments/polygon-amoy/EIP712Proxy.json)
-* **Indexer**:
-  * Contract: [0x9F07c0B0E52C36D78Ac8ABfC543c77f83888ac64](https://amoy.polygonscan.com/address/0x9F07c0B0E52C36D78Ac8ABfC543c77f83888ac64)
-  * Deployment and ABI: [Indexer.json](./deployments/polygon-amoy/Indexer.json)
-
-#### Scroll Sepolia
-
-Version 1.3.0:
-
-* **EAS**:
-  * Contract: [0xaEF4103A04090071165F78D45D83A0C0782c2B2a](https://sepolia.scrollscan.com/address/0xaEF4103A04090071165F78D45D83A0C0782c2B2a)
-  * Deployment and ABI: [EAS.json](./deployments/scroll-sepolia/EAS.json)
-* **SchemaRegistry**:
-  * Contract: [0x55D26f9ae0203EF95494AE4C170eD35f4Cf77797](https://sepolia.scrollscan.com/address/0x55D26f9ae0203EF95494AE4C170eD35f4Cf77797)
-  * Deployment and ABI: [SchemaRegistry.json](./deployments/scroll-sepolia/SchemaRegistry.json)
-* **EIP712Proxy**:
-  * Contract: [0xB3574f76b1720E61FdA98702c7016674CD6Eaa7b](https://sepolia.scrollscan.com/address/0xB3574f76b1720E61FdA98702c7016674CD6Eaa7b)
-  * Deployment and ABI: [EIP712Proxy.json](./deployments/scroll-sepolia/EIP712Proxy.json)
-* **Indexer**:
-  * Contract: [0x7C2cb1eDC328491da52de2a0afc44D3B0Ae7ee17](https://sepolia.scrollscan.com/address/0x7C2cb1eDC328491da52de2a0afc44D3B0Ae7ee17)
-  * Deployment and ABI: [Indexer.json](./deployments/scroll-sepolia/Indexer.json)
-
-#### Ink Sepolia
-
-Version 1.4.1-beta.1:
-
-* **EAS**:
-  * Contract: [0x4200000000000000000000000000000000000021](https://explorer-sepolia.inkonchain.com/address/0x4200000000000000000000000000000000000021)
-  * Deployment and ABI: [EAS.json](./deployments/ink-sepolia/EAS.json)
-* **SchemaRegistry**:
-  * Contract: [0x4200000000000000000000000000000000000020](https://explorer-sepolia.inkonchain.com/address/0x4200000000000000000000000000000000000020)
-  * Deployment and ABI: [SchemaRegistry.json](./deployments/ink-sepolia/SchemaRegistry.json)
-* **EIP712Proxy**:
-  * Contract: [0x79369eEe29e7e191F5a6278185eA4a0D906b9b9F](https://explorer-sepolia.inkonchain.com/address/0x79369eEe29e7e191F5a6278185eA4a0D906b9b9F)
-  * Deployment and ABI: [EIP712Proxy.json](./deployments/ink-sepolia/EIP712Proxy.json)
-* **Indexer**:
-  * Contract: [0x367A20665BAB1bb4DB6D80A4CF20db5Be1568d1e](https://explorer-sepolia.inkonchain.com/address/0x367A20665BAB1bb4DB6D80A4CF20db5Be1568d1e)
-  * Deployment and ABI: [Indexer.json](./deployments/ink-sepolia/Indexer.json)
-
-#### Linea Goerli
-
-Version 1.2.0:
-
-* **EAS**:
-  * Contract: [0xaEF4103A04090071165F78D45D83A0C0782c2B2a](https://goerli.lineascan.build/address/0xaEF4103A04090071165F78D45D83A0C0782c2B2a)
-  * Deployment and ABI: [EAS.json](./deployments/linea-goerli/EAS.json)
-* **SchemaRegistry**:
-  * Contract: [0x55D26f9ae0203EF95494AE4C170eD35f4Cf77797](https://goerli.lineascan.build/address/0x55D26f9ae0203EF95494AE4C170eD35f4Cf77797)
-  * Deployment and ABI: [SchemaRegistry.json](./deployments/linea-goerli/SchemaRegistry.json)
-
-## Installation
-
-```sh
-pnpm add @ethereum-attestation-service/eas-contracts
+```bash
+npx hardhat verify --network asset-hub-testnet 0x3cbd4DD4617e2aF95c5b451b1c9a3ab16E23b4a1
 ```
 
-## Testing
+### Verify EAS Contract
 
-Testing the protocol is possible via multiple approaches:
+Explorer link: https://blockscout-passet-hub.parity-testnet.parity.io/address/0x66e45E407B1159F126e76aeF9DbFf426952b2e15
 
-### Unit Tests
-
-You can run the full test suite via:
-
-```sh
-pnpm test
+```bash
+npx hardhat verify --network asset-hub-testnet 0x66e45E407B1159F126e76aeF9DbFf426952b2e15 0x3cbd4DD4617e2aF95c5b451b1c9a3ab16E23b4a1
 ```
 
-### Test Coverage
+### Verify EIP712Proxy Contract
 
-#### Latest Test Coverage Report (2023-10-31)
+Explorer link: https://blockscout-passet-hub.parity-testnet.parity.io/address/0x592FCDB8439E5D11AC5117472E89f63289b47899
 
-* 100% Statements 350/350
-* 100% Branches 172/172
-* 100% Functions 120/120
-* 100% Lines 491/491
-
-```sh
-----------------------------------|----------|----------|----------|----------|----------------|
-File                              |  % Stmts | % Branch |  % Funcs |  % Lines |Uncovered Lines |
-----------------------------------|----------|----------|----------|----------|----------------|
- contracts/                       |      100 |      100 |      100 |      100 |                |
-  Common.sol                      |      100 |      100 |      100 |      100 |                |
-  EAS.sol                         |      100 |      100 |      100 |      100 |                |
-  IEAS.sol                        |      100 |      100 |      100 |      100 |                |
-  ISchemaRegistry.sol             |      100 |      100 |      100 |      100 |                |
-  Indexer.sol                     |      100 |      100 |      100 |      100 |                |
-  SchemaRegistry.sol              |      100 |      100 |      100 |      100 |                |
-  Semver.sol                      |      100 |      100 |      100 |      100 |                |
- contracts/eip1271/               |      100 |      100 |      100 |      100 |                |
-  EIP1271Verifier.sol             |      100 |      100 |      100 |      100 |                |
- contracts/eip712/proxy/          |      100 |      100 |      100 |      100 |                |
-  EIP712Proxy.sol                 |      100 |      100 |      100 |      100 |                |
- contracts/eip712/proxy/examples/ |      100 |      100 |      100 |      100 |                |
-  PermissionedEIP712Proxy.sol     |      100 |      100 |      100 |      100 |                |
- contracts/resolver/              |      100 |      100 |      100 |      100 |                |
-  ISchemaResolver.sol             |      100 |      100 |      100 |      100 |                |
-  SchemaResolver.sol              |      100 |      100 |      100 |      100 |                |
- contracts/resolver/examples/     |      100 |      100 |      100 |      100 |                |
-  AttestationResolver.sol         |      100 |      100 |      100 |      100 |                |
-  AttesterResolver.sol            |      100 |      100 |      100 |      100 |                |
-  DataResolver.sol                |      100 |      100 |      100 |      100 |                |
-  ExpirationTimeResolver.sol      |      100 |      100 |      100 |      100 |                |
-  PayingResolver.sol              |      100 |      100 |      100 |      100 |                |
-  RecipientResolver.sol           |      100 |      100 |      100 |      100 |                |
-  RevocationResolver.sol          |      100 |      100 |      100 |      100 |                |
-  TokenResolver.sol               |      100 |      100 |      100 |      100 |                |
-  ValueResolver.sol               |      100 |      100 |      100 |      100 |                |
-----------------------------------|----------|----------|----------|----------|----------------|
-All files                         |      100 |      100 |      100 |      100 |                |
-----------------------------------|----------|----------|----------|----------|----------------|
+```bash
+npx hardhat verify --network asset-hub-testnet 0x592FCDB8439E5D11AC5117472E89f63289b47899 0x3cbd4DD4617e2aF95c5b451b1c9a3ab16E23b4a1 "2CEIP712Proxy"
 ```
 
-#### Instructions
+### Verify Indexer Contract
 
-In order to audit the test coverage of the full test suite, run:
+Explorer link: https://blockscout-passet-hub.parity-testnet.parity.io/address/0xd64b14E3bC71439eD2106e0Af2a610aac0357383
 
-```sh
-pnpm test:coverage
+```bash
+npx hardhat verify --network asset-hub-testnet 0xd64b14E3bC71439eD2106e0Af2a610aac0357383 0x3cbd4DD4617e2aF95c5b451b1c9a3ab16E23b4a1
 ```
 
-## Profiling
+### Setup instructions
 
-You can profile the gas costs of all of the user-focused flows via:
+#### Wallet setup
 
-```sh
-pnpm test:profile
+you need a wallet to deploy the contracts.
+
+```
+pnpm i viem --dev
+pnpm run generate-wallet
 ```
 
-## License
+Take the address in the console and use it in the [fauced](https://faucet.polkadot.io/) to get founds on Paseo testnet.
 
-EAS is open source and distributed under the MIT License (see [`LICENSE`](./LICENSE)).
+Take the private key and create a `.env` file folliwing the `.env.example` style and replace the `PRIVATE_KEY=<your-private-key>` with the private key.
+
+#### Compile contract
+
+```
+pnpm compile
+```
+
+#### Deploy
+
+```
+npx hardhat run scripts/deploy.js --network paseoAssetHub
+```
+
+After you deploy the contracts you can add the adresses in the `.env` file to fill in this two variables
+
+```
+# Address of the Schema Registry contract on the Polkadot Asset Hub Testnet
+SCHEMA_REGISTRY_ADDRESS=
+
+# Address of the EAS contract on the Polkadot Asset Hub Testnet
+EAS_ADDRESS=
+```
+
+otherwise you can use the once of our deployment
+
+```# Address of the Schema Registry contract on the Polkadot Asset Hub Testnet
+SCHEMA_REGISTRY_ADDRESS=0x3cbd4DD4617e2aF95c5b451b1c9a3ab16E23b4a1
+
+# Address of the EAS contract on the Polkadot Asset Hub Testnet
+EAS_ADDRESS=0x66e45E407B1159F126e76aeF9DbFf426952b2e15
+```
+
+![deploy](./screens/deploy.jpg)
+
+#### Attestation Scripts
+
+Use the following scripts to test the deployed contracts.
+
+##### Create Schema
+
+If you redeployed the contract you can run:
+
+run:
+
+```
+pnpm run create-schema
+```
+
+if you use our contract make sure you create a new schema editing:
+
+```
+const schemaHackathonSubmission = 'string hackathonId,string projectName,string description,address[] team,uint64 submittedDate';
+```
+
+in `scripts/create-schema.ts`
+
+Create Schema transaction [tx: 0x7947cc89e4d0fd684762be91d5a5920b3bbca965d18bfeaf1795ccd4dfd6928e](https://blockscout-passet-hub.parity-testnet.parity.io/tx/0x7947cc89e4d0fd684762be91d5a5920b3bbca965d18bfeaf1795ccd4dfd6928e)
+
+##### Verify Schema
+
+make sure `SCHEMA_UID` is assigned in your `.env` basing on your created schema or use the default one
+
+run:
+
+```
+pnpm run verify-schema
+```
+
+![verify-schema](./screens/schema-verify.jpg)
+
+##### Create Attestation
+
+make sure `SCHEMA_UID` is assigned in your `.env` basing on your created schema or use the default one
+
+run:
+
+```
+pnpm run create-attestation
+```
+
+Take the attestation uid and add it to your `.env` file.
+
+Create attestantion transaction [tx: 0x55c77a443643d9a3be369ad493a18d5dbcb2f90ecf0149cb2662dbec1e41df69](https://blockscout-passet-hub.parity-testnet.parity.io/tx/0x55c77a443643d9a3be369ad493a18d5dbcb2f90ecf0149cb2662dbec1e41df69)
+
+##### Verify Attestation
+
+make sure `ATTESTATION_UID` is assigned in your `.env` basing on your created schema or use the default one
+
+run:
+
+```
+pnpm run verify-attestation
+```
+
+![verify-attestation](./screens/attestation-verify.jpg)
+
+#### Link to source smart contracts source code
+
+[eas-contracts](https://github.com/ethereum-attestation-service/eas-contracts)
+
+#### Porting process documentation
+
+The strategy we adopted:
+
+We thought to start porting contracts in the following order on local development. Due to heavy local development process we decided to do the porting directly on devnet. We started deploying contracts in this order:
+
+1. **SchemaRegistry**
+2. **EAS**
+3. **Create Resolver**
+
+Used `AttesterResolver.sol` code :
+
+```solidity
+// SPDX-License-Identifier: MIT
+
+pragma solidity ^0.8.4;
+
+import { IEAS, Attestation } from '../../IEAS.sol';
+import { SchemaResolver } from '../SchemaResolver.sol';
+
+/// @title AttesterResolver
+/// @notice A sample schema resolver that only allows specific attesters.
+/// @dev Optimized for Polkadot Asset Hub gas costs.
+contract AttesterResolver is SchemaResolver {
+  mapping(address attester => bool allowed) private _allowedAttesters;
+
+  error UnauthorizedAttester();
+
+  event AttesterAdded(address indexed attester);
+  event AttesterRemoved(address indexed attester);
+
+  /// @dev Creates a new AttesterResolver instance.
+  /// @param eas The address of the global EAS contract.
+  constructor(IEAS eas) SchemaResolver(eas) {}
+
+  /// @notice Adds an allowed attester.
+  /// @param attester The attester to allow.
+  function addAttester(address attester) external {
+    _allowedAttesters[attester] = true;
+    emit AttesterAdded(attester);
+  }
+
+  /// @notice Removes an allowed attester.
+  /// @param attester The attester to remove.
+  function removeAttester(address attester) external {
+    _allowedAttesters[attester] = false;
+    emit AttesterRemoved(attester);
+  }
+
+  /// @notice Checks if an attester is allowed.
+  /// @param attester The attester to check.
+  /// @return Whether the attester is allowed.
+  function isAllowedAttester(address attester) external view returns (bool) {
+    return _allowedAttesters[attester];
+  }
+
+  /// @inheritdoc SchemaResolver
+  function onAttest(Attestation memory attestation, uint256) internal view override returns (bool) {
+    return _allowedAttesters[attestation.attester];
+  }
+
+  /// @inheritdoc SchemaResolver
+  function onRevoke(Attestation memory attestation, uint256) internal view override returns (bool) {
+    return _allowedAttesters[attestation.attester];
+  }
+}
+```
+
+Used `SchemaResolver.sol` code:
+
+```solidity
+// SPDX-License-Identifier: MIT
+
+pragma solidity ^0.8.4;
+
+import { AccessDenied, InvalidEAS, InvalidLength } from '../Common.sol';
+import { IEAS, Attestation } from '../IEAS.sol';
+import { Semver } from '../Semver.sol';
+import { ISchemaResolver } from './ISchemaResolver.sol';
+
+/// @title SchemaResolver
+/// @notice The base schema resolver contract for Polkadot EAS.
+/// @dev Enhanced with better gas optimization for Polkadot Asset Hub.
+abstract contract SchemaResolver is ISchemaResolver, Semver {
+  error InsufficientValue();
+  error NotPayable();
+
+  // The global EAS contract.
+  IEAS internal immutable _eas;
+
+  /// @dev Creates a new resolver.
+  /// @param eas The address of the global EAS contract.
+  constructor(IEAS eas) Semver(1, 4, 0) {
+    if (address(eas) == address(0)) {
+      revert InvalidEAS();
+    }
+
+    _eas = eas;
+  }
+
+  /// @dev Ensures that only the EAS contract can make this call.
+  modifier onlyEAS() {
+    _onlyEAS();
+    _;
+  }
+
+  /// @inheritdoc ISchemaResolver
+  function isPayable() external pure virtual returns (bool) {
+    return _isPayable();
+  }
+
+  /// @dev Internal function to check if the resolver is payable.
+  function _isPayable() internal pure virtual returns (bool) {
+    return false;
+  }
+
+  /// @dev ETH callback.
+  receive() external payable virtual {
+    if (!_isPayable()) {
+      revert NotPayable();
+    }
+  }
+
+  /// @dev Processes an attestation and verifies whether it's valid.
+  /// @param attestation The new attestation.
+  /// @return Whether the attestation is valid.
+  function onAttest(Attestation memory attestation, uint256 value) internal virtual returns (bool);
+
+  /// @dev Processes an attestation revocation and verifies if it can be revoked.
+  /// @param attestation The existing attestation to be revoked.
+  /// @return Whether the attestation can be revoked.
+  function onRevoke(Attestation memory attestation, uint256 value) internal virtual returns (bool);
+
+  /// @inheritdoc ISchemaResolver
+  function attest(bytes calldata attestation) external payable onlyEAS returns (bool) {
+    return onAttest(abi.decode(attestation, (Attestation)), msg.value);
+  }
+
+  /// @inheritdoc ISchemaResolver
+  function multiAttest(
+    bytes[] calldata attestations,
+    uint256[] calldata values
+  ) external payable onlyEAS returns (bool) {
+    uint256 length = attestations.length;
+
+    if (length != values.length) {
+      revert InvalidLength();
+    }
+
+    for (uint256 i = 0; i < length; ) {
+      if (!onAttest(abi.decode(attestations[i], (Attestation)), values[i])) {
+        return false;
+      }
+
+      unchecked {
+        ++i;
+      }
+    }
+
+    return true;
+  }
+
+  /// @inheritdoc ISchemaResolver
+  function revoke(bytes calldata attestation) external payable onlyEAS returns (bool) {
+    return onRevoke(abi.decode(attestation, (Attestation)), msg.value);
+  }
+
+  /// @inheritdoc ISchemaResolver
+  function multiRevoke(
+    bytes[] calldata attestations,
+    uint256[] calldata values
+  ) external payable onlyEAS returns (bool) {
+    uint256 length = attestations.length;
+
+    if (length != values.length) {
+      revert InvalidLength();
+    }
+
+    for (uint256 i = 0; i < length; ) {
+      if (!onRevoke(abi.decode(attestations[i], (Attestation)), values[i])) {
+        return false;
+      }
+
+      unchecked {
+        ++i;
+      }
+    }
+
+    return true;
+  }
+
+  /// @dev Ensures that only the EAS contract can make this call.
+  function _onlyEAS() private view {
+    if (msg.sender != address(_eas)) {
+      revert AccessDenied();
+    }
+  }
+}
+```
+
+Used `ISchemaResolver.sol` code:
+
+```solidity
+// SPDX-License-Identifier: MIT
+
+pragma solidity ^0.8.0;
+
+import { ISemver } from '../ISemver.sol';
+
+/// @title ISchemaResolver
+/// @notice The interface of an optional schema resolver.
+interface ISchemaResolver is ISemver {
+  /// @notice Checks if the resolver can be sent ETH.
+  /// @return Whether the resolver supports ETH transfers.
+  function isPayable() external pure returns (bool);
+
+  /// @notice Processes an attestation and verifies whether it's valid.
+  /// @param attestation The new attestation.
+  /// @return Whether the attestation is valid.
+  function attest(bytes calldata attestation) external payable returns (bool);
+
+  /// @notice Processes multiple attestations and verifies whether they are valid.
+  /// @param attestations The new attestations.
+  /// @param values Explicit ETH amounts which were sent with each attestation.
+  /// @return Whether all the attestations are valid.
+  function multiAttest(bytes[] calldata attestations, uint256[] calldata values) external payable returns (bool);
+
+  /// @notice Processes an attestation revocation and verifies if it can be revoked.
+  /// @param attestation The existing attestation to be revoked.
+  /// @return Whether the attestation can be revoked.
+  function revoke(bytes calldata attestation) external payable returns (bool);
+
+  /// @notice Processes revocation of multiple attestations and verifies they can be revoked.
+  /// @param attestations The existing attestations to be revoked.
+  /// @param values Explicit ETH amounts which were sent with each revocation.
+  /// @return Whether the attestations can be revoked.
+  function multiRevoke(bytes[] calldata attestations, uint256[] calldata values) external payable returns (bool);
+}
+```
+
+Used `deploy.js` code:
+
+```javascript
+const { ethers } = require('hardhat');
+
+async function main() {
+  console.log('🚀 Starting EAS deployment to Polkadot Asset Hub...');
+
+  // Check if we have a private key
+  if (!process.env.PRIVATE_KEY) {
+    throw new Error('❌ PRIVATE_KEY not found in environment variables. Please check your .env file.');
+  }
+
+  console.log('✅ Private key found in environment');
+
+  const [deployer] = await ethers.getSigners();
+
+  if (!deployer) {
+    throw new Error('❌ No signer available. Please check your network configuration and private key.');
+  }
+
+  console.log('Deploying contracts with the account:', deployer.address);
+
+  try {
+    const balance = await deployer.provider.getBalance(deployer.address);
+    console.log('Account balance:', ethers.formatEther(balance), 'ETH');
+
+    if (balance === 0n) {
+      console.log('⚠️  Warning: Account balance is 0. You may need testnet tokens to deploy.');
+    }
+  } catch (error) {
+    console.log('⚠️  Could not fetch balance:', error.message);
+  }
+
+  // Deploy SchemaRegistry first
+  console.log('\n📋 Deploying SchemaRegistry...');
+  const SchemaRegistry = await ethers.getContractFactory('SchemaRegistry');
+  const schemaRegistry = await SchemaRegistry.deploy();
+  await schemaRegistry.waitForDeployment();
+  const schemaRegistryAddress = await schemaRegistry.getAddress();
+
+  console.log('✅ SchemaRegistry deployed to:', schemaRegistryAddress);
+
+  // Deploy EAS with SchemaRegistry address
+  console.log('\n🔗 Deploying EAS...');
+  const EAS = await ethers.getContractFactory('EAS');
+  const eas = await EAS.deploy(schemaRegistryAddress);
+  await eas.waitForDeployment();
+  const easAddress = await eas.getAddress();
+
+  console.log('✅ EAS deployed to:', easAddress);
+
+  // Deploy example AttesterResolver
+  console.log('\n👥 Deploying AttesterResolver example...');
+  const AttesterResolver = await ethers.getContractFactory('AttesterResolver');
+  const attesterResolver = await AttesterResolver.deploy(easAddress);
+  await attesterResolver.waitForDeployment();
+  const attesterResolverAddress = await attesterResolver.getAddress();
+
+  console.log('✅ AttesterResolver deployed to:', attesterResolverAddress);
+
+  // Verify deployments
+  console.log('\n🔍 Verifying deployments...');
+
+  const registryVersion = await schemaRegistry.version();
+  console.log('SchemaRegistry version:', registryVersion);
+
+  const easVersion = await eas.version();
+  console.log('EAS version:', easVersion);
+
+  const registryFromEAS = await eas.getSchemaRegistry();
+  console.log('EAS points to SchemaRegistry:', registryFromEAS);
+  console.log('Registry addresses match:', registryFromEAS === schemaRegistryAddress);
+
+  // Create a sample schema for testing
+  console.log('\n📝 Creating sample schema...');
+  const sampleSchema = 'uint256 score, string name, bool verified';
+  const registerTx = await schemaRegistry.register(
+    sampleSchema,
+    ethers.ZeroAddress, // No resolver
+    true // Revocable
+  );
+  const receipt = await registerTx.wait();
+
+  // Get the schema UID from the event
+  const registeredEvent = receipt.logs.find((log) => log.fragment?.name === 'Registered');
+  const schemaUID = registeredEvent?.args[0];
+
+  console.log('✅ Sample schema registered with UID:', schemaUID);
+
+  // Summary
+  console.log('\n📊 Deployment Summary:');
+  console.log('=====================================');
+  console.log('Network: Polkadot Asset Hub Testnet');
+  console.log('Deployer:', deployer.address);
+  console.log('SchemaRegistry:', schemaRegistryAddress);
+  console.log('EAS:', easAddress);
+  console.log('AttesterResolver:', attesterResolverAddress);
+  console.log('Sample Schema UID:', schemaUID);
+  console.log('=====================================');
+
+  // Save deployment info
+  const deploymentInfo = {
+    network: 'asset-hub-testnet',
+    chainId: 420420421,
+    deployer: deployer.address,
+    timestamp: new Date().toISOString(),
+    contracts: {
+      SchemaRegistry: {
+        address: schemaRegistryAddress,
+        version: registryVersion
+      },
+      EAS: {
+        address: easAddress,
+        version: easVersion
+      },
+      AttesterResolver: {
+        address: attesterResolverAddress
+      }
+    },
+    sampleSchema: {
+      uid: schemaUID,
+      schema: sampleSchema
+    }
+  };
+
+  const fs = require('fs');
+  const path = require('path');
+  const deploymentsDir = path.join(__dirname, '..', 'deployments');
+
+  if (!fs.existsSync(deploymentsDir)) {
+    fs.mkdirSync(deploymentsDir, { recursive: true });
+  }
+
+  fs.writeFileSync(path.join(deploymentsDir, 'asset-hub-testnet.json'), JSON.stringify(deploymentInfo, null, 2));
+
+  console.log('\n💾 Deployment info saved to deployments/asset-hub-testnet.json');
+  console.log('\n🎉 Deployment completed successfully!');
+}
+
+main()
+  .then(() => process.exit(0))
+  .catch((error) => {
+    console.error('❌ Deployment failed:', error);
+    process.exit(1);
+  });
+```
+
+Then after testing the contracts from the explorer interface, we ran verify commands, we made test scripts and we tried to create attestation. Once we assessed the correct working we decided to fork the official `eas-contract` repository and we readepted the deployment script to follow the original deployment steps, so in order deploying:
+
+1. **SchemaRegistry**
+2. **EAS**
+3. **Indexer**
+4. **EIP712Proxy**
+
+Again we checked from the explorer interface that contract where working, we ran verify commands, and we ran the scripts to create schema and attestation.
+
+## Feedbacks
+
+When we started the migration we where intended to test it locally following [this](https://docs.polkadot.com/develop/smart-contracts/local-development-node/) documentation. We think that the local development is a bit heavy. Project is quite big, building and running development process didn't went smooth unfortunately. Some failure screenshots here:
+
+![local-dev-error-1](./screens/localdev-error1.png)
+
+![local-dev-error-2](./screens/localdev-error2.png)
+
+We decided to experiment deploying directly onchain.
+
+[Block explorer](https://blockscout-passet-hub.parity-testnet.parity.io/) shows contracts interface and this is really really nice and helpful during the development phase.
