@@ -88,6 +88,8 @@ SCHEMA_REGISTRY_ADDRESS=0x3cbd4DD4617e2aF95c5b451b1c9a3ab16E23b4a1
 EAS_ADDRESS=0x66e45E407B1159F126e76aeF9DbFf426952b2e15
 ```
 
+![deploy](./screens/deploy.jpg)
+
 #### Attestation Scripts
 
 Use the following scripts to test the deployed contracts.
@@ -110,6 +112,8 @@ const schemaHackathonSubmission = 'string hackathonId,string projectName,string 
 
 in `scripts/create-schema.ts`
 
+Create Schema transaction [tx: 0x7947cc89e4d0fd684762be91d5a5920b3bbca965d18bfeaf1795ccd4dfd6928e](https://blockscout-passet-hub.parity-testnet.parity.io/tx/0x7947cc89e4d0fd684762be91d5a5920b3bbca965d18bfeaf1795ccd4dfd6928e)
+
 ##### Verify Schema
 
 make sure `SCHEMA_UID` is assigned in your `.env` basing on your created schema or use the default one
@@ -119,6 +123,8 @@ run:
 ```
 pnpm run verify-schema
 ```
+
+![verify-schema](./screens/schema-verify.jpg)
 
 ##### Create Attestation
 
@@ -132,6 +138,8 @@ pnpm run create-attestation
 
 Take the attestation uid and add it to your `.env` file.
 
+Create attestantion transaction [tx: 0x55c77a443643d9a3be369ad493a18d5dbcb2f90ecf0149cb2662dbec1e41df69](https://blockscout-passet-hub.parity-testnet.parity.io/tx/0x55c77a443643d9a3be369ad493a18d5dbcb2f90ecf0149cb2662dbec1e41df69)
+
 ##### Verify Attestation
 
 make sure `ATTESTATION_UID` is assigned in your `.env` basing on your created schema or use the default one
@@ -141,6 +149,8 @@ run:
 ```
 pnpm run verify-attestation
 ```
+
+![verify-attestation](./screens/attestation-verify.jpg)
 
 #### Link to source smart contracts source code
 
@@ -547,10 +557,10 @@ Again we checked from the explorer interface that contract where working, we ran
 
 When we started the migration we where intended to test it locally following [this](https://docs.polkadot.com/develop/smart-contracts/local-development-node/) documentation. We think that the local development is a bit heavy. Project is quite big, building and running development process didn't went smooth unfortunately. Some failure screenshots here:
 
-[Image]()
+![local-dev-error-1](./screens/localdev-error1.png)
 
-[Image2]()
+![local-dev-error-2](./screens/localdev-error2.png)
 
 We decided to experiment deploying directly onchain.
 
-[Block explorer](https://assethub-polkadot.subscan.io/) shows contracts interface and this is really really nice and helpful during the development phase.
+[Block explorer](https://blockscout-passet-hub.parity-testnet.parity.io/) shows contracts interface and this is really really nice and helpful during the development phase.
