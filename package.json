@@ -66,7 +66,8 @@
     "create-schema": "ts-node scripts/create-schema.ts",
     "verify-schema": "ts-node scripts/verify-schema.ts",
     "create-attestation": "ts-node scripts/create-attestation.ts",
-    "verify-attestation": "ts-node scripts/verify-attestation.ts"
+    "verify-attestation": "ts-node scripts/verify-attestation.ts",
+    "generate-wallet": "ts-node scripts/generate-wallet.ts"
   },
   "dependencies": {
     "@ethereum-attestation-service/eas-sdk": "^2.9.0",
