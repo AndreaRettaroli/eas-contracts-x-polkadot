@@ -31,6 +31,21 @@ const mochaOptions = (): MochaOptions => {
 };
 
 const config: HardhatUserConfig = {
+ etherscan: {
+  apiKey: {
+    'passet-hub': 'empty'
+  },
+  customChains: [
+    {
+      network: "passet-hub",
+      chainId: 420420421,
+      urls: {
+        apiURL: "https://blockscout-passet-hub.parity-testnet.parity.io/api",
+        browserURL: "https://blockscout-passet-hub.parity-testnet.parity.io"
+      }
+    }
+  ]
+ },
   networks: {
     hardhat: {
       accounts: {
@@ -43,7 +58,11 @@ const config: HardhatUserConfig = {
       url: "https://testnet-passet-hub-eth-rpc.polkadot.io",
       chainId: 420420422, // Paseo Asset Hub chain ID
       accounts: process.env.PRIVATE_KEY ? [process.env.PRIVATE_KEY] : [],
-    }
+
+    },
+    'passet-hub': {
+      url: 'https://blockscout-passet-hub.parity-testnet.parity.io/api/eth-rpc',
+    },
   },
   solidity: {
     version: '0.8.28',
@@ -74,7 +93,8 @@ const config: HardhatUserConfig = {
     enabled: isProfiling
   },
 
-  mocha: mochaOptions()
+  mocha: mochaOptions(),
+
 };
 
 export default config;
