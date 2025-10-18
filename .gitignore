@@ -47,4 +47,4 @@ allFiredEvents
 scTopics
 
 .env*
-!.env.template
+!.env.example
